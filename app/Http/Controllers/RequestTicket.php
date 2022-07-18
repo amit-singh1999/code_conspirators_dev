@@ -13,7 +13,9 @@ use App\Models\Casestudy;
 class RequestTicket extends Controller
 {
     function ticketData(Request $req)
+     
   {
+    
     //form validation
     $this->validate($req, [
       'issuetitle' => 'required|max:50',
@@ -22,7 +24,6 @@ class RequestTicket extends Controller
   ]);
      // Get the currently authenticated user...
   $user = Auth::user();
-
 
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -497,8 +498,9 @@ return 'http://'. $url;
                 //   dd($datanew);
                       $html = view('dowloadasPdf.index-form',compact('response', 'datanew','FinalProductArraycopy','UsernameofQuote','company_Title','Listofcasestudy','assumptiondata','assesmentlink', 'estimatorlink'))->render();
                       $html .= '<link type="text/css" href="https://files.codeconspirators.com/_resources/proposal/style.css" rel="stylesheet" />';
-                      $pdf=  PDF::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->
+                      $pdf=  PDF::loadHTML($html)->setPaper('a4', 'portrait')->setWarnings(false)->
                       setOptions(['defaultFont' => 'sans-serif'])->setOptions(['isRemoteEnabled' => false]);
+                      // return $pdf->stream();
                       return $pdf->download('Service-contract.pdf');
               }
               return 0;

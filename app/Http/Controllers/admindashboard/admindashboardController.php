@@ -36,7 +36,38 @@ class admindashboardController extends Controller
     {
         $userdata = User::findOrFail($id);
         $logins = logins::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
-        return view('Adminview.adminEdituserData', compact('userdata', 'logins'));
+        $project_name = $this->ProjectName();
+        $project_name_result = $project_name->result;
+        
+        return view('Adminview.adminEdituserData', compact('userdata', 'logins','project_name_result'));
+    }
+
+    public function ProjectName()
+    {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://cc.codeconspirators.com/rest/13/kpylyymjqouoe0v2/sonet_group.get',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{
+             "ORDER": {
+             "NAME": "ASC"
+             }
+             }',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Cookie: BITRIX_SM_SALE_UID=11; qmb=.'
+            ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($response);
     }
 
     public function  portalUserEditUpdate(Request $req, $id)
@@ -45,13 +76,16 @@ class admindashboardController extends Controller
         // $this->validate($req, [
         //     'Name' => 'required',
         // ]);
-
         $userfound = User::findOrFail($id);
         $userfound->update([
-            'name' => $req->Name,
+            'name' => $req->name,
             'role' => $req->role,
-            'phone' =>  $req->Phone,
+            'phone' =>  $req->phone,
+            'project' =>  $req->project,
         ]);
+        // $projects = $req->project;
+        //     $req->project = implode(',',$projects);
+        // dd($projects);
         return redirect()->back();
     }
 

@@ -50,12 +50,14 @@ class ExternalTemplateController extends Controller
         $signeddate= "";
         $quotedproduct=json_decode($newresponse,true);
       // dd($quotedproduct);
-       if(isset($quotedproduct['result']['UF_CRM_QUOTE_1630303559020']) && count($quotedproduct['result']['UF_CRM_QUOTE_1630303559020'])>0 ){
-
+       if(isset($quotedproduct['result']['UF_CRM_QUOTE_1630303559020']) && count($quotedproduct['result']['UF_CRM_QUOTE_1630303559020'])>0 )
+                
+            {
                 $signed =1; 
                 $signeddate=$quotedproduct['result']['UF_CRM_1650868859'];
-                $date = strtotime($signeddate);
-                $signeddate = date('m/d/Y H:i',$date);
+                $date = new DateTime($signeddate);
+                date_default_timezone_set("America/New_York");
+                $signeddate = date('m-d-Y H:i:s',strtotime($signeddate)); 
             }
         
         $datanew = json_decode($newresponse);
@@ -388,7 +390,7 @@ class ExternalTemplateController extends Controller
             $assesmentlink ="";
             
             /*Website Assessment link*/
-            if(isset($response1['result']['UF_CRM_1622055091573']) &&$response1['result']['UF_CRM_1622055091573']!=""){
+            if(isset($response1['result']['UF_CRM_1622055091573']) && $response1['result']['UF_CRM_1622055091573']!=""){
 
                 $webassesmentlink = $response1['result']['UF_CRM_1622055091573'];
                 $assesmentlink=$webassesmentlink;
@@ -396,7 +398,7 @@ class ExternalTemplateController extends Controller
             }
             
             /*Seo Assessment link*/
-             if(isset($response1['result']['UF_CRM_1623613754787']) &&$response1['result']['UF_CRM_1623613754787']!=""){
+             if(isset($response1['result']['UF_CRM_1623613754787']) && $response1['result']['UF_CRM_1623613754787']!=""){
 
                 $seoassesmentlink = $response1['result']['UF_CRM_1623613754787'];
                 $assesmentlink=$seoassesmentlink;

@@ -5,10 +5,11 @@
     <title>CC - Action Plan for
 	<?php
 	if($company_Title == '0'){
-		echo $UsernameofQuote->result->NAME;
+		
+		echo $company_name = $UsernameofQuote->result->NAME;
 	}
 	else{
-		echo $company_Title;
+		echo $company_name = $company_Title;
 	}
 	?>	
 	</title>
@@ -348,7 +349,7 @@
         </a>
 	    <?php } ?>
        
-<!--        <a href="#Overview" style="text-decoration: none;">
+        <a href="#Overview" style="text-decoration: none;">
             <li class="main-navigation-item main-navigation-link">
                 Overview
             </li>
@@ -360,7 +361,7 @@
         <a href="#SEM" style="text-decoration: none;">
             <li class="main-navigation-item main-navigation-link menu-service">SEM
             </li>
-        </a>-->
+        </a>
         <a href="#Process" style="text-decoration: none;">
             <li class="main-navigation-item main-navigation-link text-capitalize">Process
             </li>
@@ -493,6 +494,65 @@
     </p>
     <?php } ?>
     
+	<!-- Overview -->
+    <h1>
+        <a name="Overview">
+            Overview
+        </a>
+    </h1>
+    <p>
+        Our goal at Code Conspirators is to predictably and efficiently generate new leads for our marketing clients. Based on the volume and scope of work projected in the future, the most cost effective approach is a retainer agreement. Benefits of a retainer
+        agreement include:<br>
+    <ul>
+        <li>
+            Reliable Budget - Establishing a finite number of marketing hours each month yields consistent billing and reliable budgeting.
+        </li>
+        <li>
+            Transparent Billing Structure - With a retainer in place, we provide you with a “proof then payment” billing structure. We will not exceed the agreed upon marketing hours each month without explicit approval in writing to do so.
+        </li>
+        <li>
+            Discounted Hourly Rates - Our rates under a retainer agreement are discounted, depending on the retainer option selected.
+        </li>
+        <li>
+            Retainer-Exclusive Benefits - In addition to our rate discounts, we offer other retainer- exclusive benefits not otherwise available, as noted in the table below.
+        </li>
+    </ul>
+    </p>
+    <h3>
+        <a name="SEO">
+            SEO: Search Engine Optimization
+        </a>
+    </h3>
+    <p>
+        Creating a solid digital marketing strategy for your business isn’t always easy. SEO is complex and having the right plan takes time, skill, and effort. And, as more companies discover the value of an optimized website, the market has become increasingly
+        saturated, making it difficult to navigate without a solid partner to help you stand out. That’s where we come in. Simply put, we are here to help you grow your visibility and increase leads.</p><br>
+
+    <h4 class="quote">The right digital marketing team can get you seen through SEO. The wrong one can leave you in a deep, dark cave.</h4><br>
+
+    <p>SEO is one big game of ‘who do you know’ for platforms like Google. The more people who connect with your site using optimized keywords, the more these search engines are likely to trust you when referring others scouring
+        the web using those same words. But stuffing a bunch of keywords onto a page and hoping for the best is not the way to get the job done.
+    </p>
+    <h3>
+        <a name="SEM">
+            SEM: Search Engine Marketing
+        </a>
+    </h3>
+    <p>
+        If you’re just getting started with paid advertising or SEM, we can help and we can get you up and running with a new campaign in as little as thirty days. Of course, this isn’t something you just want to dive into without a bit of research into your
+        target demographics, keywords, an established budget, and more. Our Code Conspirators team can not only take care of the grunt work for you, we’ll leverage our expertise to ensure your ads cut through the noise
+        of organic and other paid search results.
+    </p>
+	<br /><br />
+    <div class="highlighted" style="margin-left: 50px; margin-right: 20px;">
+        <h4>
+            What about Ad Spend?
+        </h4>
+        <p>
+            Great question! Ad spend is fully customizable to your needs and budget, which is why it's in addition to your monthly retainer cost. You'll pay Google directly - no middle man... or woman.
+        </p>
+    </div>
+	
+	<!-- Process -->
     <h1>
         <a name="Process">
             Process
@@ -507,8 +567,8 @@
 
 	<div style="margin-left: 50px;">
     <h3 style="margin-bottom: 0px; padding-bottom: 0px;">
-        <a name="Discover">
-            Discover
+        <a name="Define">
+            Define
         </a>
     </h3>
     <p>
@@ -842,7 +902,7 @@
                 <td class="schedule-table-data">30% of Total</td>
             </tr>
             <tr valign="top">
-                <td class="schedule-table-data">Deploy + Deliver</td>
+                <td class="schedule-table-data">Deploy</td>
                 <td class="schedule-table-data">At or Before Launch</td>
                 <td class="schedule-table-data">10% of Total,<br /> +/- any Adjustments</td>
             </tr>
@@ -904,7 +964,7 @@
 </h1>
 <div id="InsertAssumption">
 <p>
-{{ $assumptiondata }} 
+<?php echo htmlspecialchars_decode($assumptiondata); ?>
 
 </p>
 
@@ -1157,7 +1217,7 @@
 <div class="container">
     <br>
     <?php echo isset($msg) ? $msg : ''; ?>
-    <h4>Sign below:</h4>
+    <h4>You can sign below using your finger or mouse.</h4>
     <hr>
     <div id="canvasDiv" style="width:100%;background: white;opacity: 0.8;"></div>
     <br>
@@ -1168,6 +1228,7 @@
     <input type="hidden" id="signature" name="signature">
     <input type="hidden" id="pdflink" name="pdflink" value="">
     <input type="hidden" id="templink" name="templink" value="">
+    <input type="hidden" id="company_name" name="company_name" value="{{$company_name}}" >
     <input type="hidden" name="signaturesubmit" value="1">
     <!--</form>-->
 </div>

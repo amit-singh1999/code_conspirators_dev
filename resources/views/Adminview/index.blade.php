@@ -30,6 +30,7 @@
             </thead>
             <tbody class="table_body_color">
                 @foreach ($data as $userdata_info)
+                
                 <tr>
                     <td>{{$userdata_info['name']}} </th>
                     <td>{{$userdata_info['role']}} </th>

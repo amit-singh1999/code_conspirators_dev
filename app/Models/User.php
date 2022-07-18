@@ -26,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
+        'project',
         'image',
         'role',
         'secure_check'
@@ -60,5 +61,15 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function setProject($value)
+    {
+        $this->attributes['project'] = json_encode($value);
+    }
+
+    public function getProject($value)
+    {
+        $this->attributes['project'] = json_decode($value);
     }
 }

@@ -1,6 +1,7 @@
 @extends('adminlayout.final')
 <!-- Page Content  -->
 @section('content')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 
 <?php
 function convertMinutesToDecimal($minutes)
@@ -9,7 +10,7 @@ function convertMinutesToDecimal($minutes)
    $hours =  $minutes / 60;
    return round($hours,2);
 }
-foreach ($newResponse as $value) { 
+foreach ($newResponse as $value) {
     $name=  $value['name'];
     break;
 }
@@ -29,7 +30,7 @@ foreach ($newResponse as $value) {
         <div style="margin-top: 50px;">
        
         <div>
-            <table class="table">
+            <table class="table" id="table_id">
                   <thead><tr><h2>{{  $name }}</h2></tr></thead>
                 <thead>
                     <tr>
@@ -57,3 +58,17 @@ foreach ($newResponse as $value) {
     </div>
 </div>
 @endsection
+@push('scripts')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#table_id').DataTable();
+    });
+</script>
+
+@endpush

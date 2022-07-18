@@ -5,7 +5,8 @@
 <!-- Page Content  -->
 <div id="content" class="p-4 p-md-5 pt-5">
 
-
+    <a  href="{{url('/admin')}}" class="link_color"><i style="margin-left:17px" class="fas fa-long-arrow-alt-left"></i> <b>Back</b>
+    </i></a>
 
     <div class="container-fluid mt--7" >
         <div class="row">

@@ -5,10 +5,10 @@
     <title>CC - Action Plan for
 	<?php
 	if($company_Title == '0'){
-		echo $UsernameofQuote->result->NAME;
+		echo $company_name = $UsernameofQuote->result->NAME;
 	}
 	else{
-		echo $company_Title;
+		echo $company_name =  $company_Title;
 	}
 	?>	
 	</title>
@@ -899,7 +899,7 @@
 </h1>
 <div id="InsertAssumption">
 <p>
-{{ $assumptiondata }} 
+<?php echo htmlspecialchars_decode($assumptiondata); ?>
 
 </p>
 
@@ -1152,7 +1152,7 @@
 <div class="container">
     <br>
     <?php echo isset($msg) ? $msg : ''; ?>
-    <h4>Sign below:</h4>
+    <h4>You can sign below using your finger or mouse.</h4>
     <hr>
     <div id="canvasDiv" style="width:100%;background: white;opacity: 0.8;"></div>
     <br>
@@ -1164,6 +1164,7 @@
     <input type="hidden" id="pdflink" name="pdflink" value="">
     <input type="hidden" id="templink" name="templink" value="">
     <input type="hidden" name="signaturesubmit" value="1">
+     <input type="hidden" id="company_name" name="company_name" value="{{$company_name}}" >
     <!--</form>-->
 </div>
 

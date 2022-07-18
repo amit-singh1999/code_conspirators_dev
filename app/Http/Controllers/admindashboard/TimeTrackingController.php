@@ -288,7 +288,6 @@ class TimeTrackingController extends Controller
                 $ProjectNameFromresponse =  $this->GetProjectName($project_idHere);
                 $value['projectname'] = $ProjectNameFromresponse;
                 $newmainarray[] = $value;
-              
             }
         }
         $newResponse =  $newmainarray;

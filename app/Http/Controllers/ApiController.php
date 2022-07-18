@@ -623,7 +623,7 @@ class ApiController extends Controller
             /*UF_CRM_QUOTE_1637294174507 checking installments of Quote*/
             if (isset($data->UF_CRM_QUOTE_1637294174507)) {
                 $installement_numbers = $data->UF_CRM_QUOTE_1637294174507;
-                $installement_numbers_array = explode(",", $installement_numbers);
+                $installement_numbers_array = explode("/", $installement_numbers);
                 $i = 0;
                 if (array_sum($installement_numbers_array) == 100) {
                   
@@ -1046,8 +1046,7 @@ class ApiController extends Controller
            //  unset($datacopy[$i]);
         //dd($datacopy);
             //continue;
-            
-                
+              
             }
             $_SESSION[$i]["PNAME"]=$data['PRODUCT_NAME']; 
              if(!(str_contains($data['PRODUCT_NAME'],'Discount:') or str_contains($data['PRODUCT_NAME'],'Credit')) )
@@ -1122,6 +1121,7 @@ class ApiController extends Controller
         $token['refresh_token'] = $refreshTokenValue;
         $token['updated_at'] = date('Y-m-d');
         file_put_contents(storage_path() . "/token.json", json_encode($token));
+        dd($token);
         echo "Access Token Saved.!";
     }
 
